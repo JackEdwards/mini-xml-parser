@@ -2,8 +2,6 @@
 
 #include <algorithm>
 
-// Hello from Jack's Macbook!
-
 enum TokenType;
 void AddToken(std::string& text, TokenType type, std::vector<std::pair<std::string, TokenType>>& tokens);
 

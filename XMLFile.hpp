@@ -6,20 +6,27 @@
 #include <string>
 #include <vector>
 #include "XMLTag.hpp"
+#include "Token.hpp"
+
+enum State
+{
+	InsideTag,
+	OutsideTag
+};
 
 class XMLFile
 {
 public:
 	std::string m_path;
 	std::string m_contents;
-	std::vector<std::string> m_lines;
-	XMLTag* m_root;
+	std::vector<Token> m_tokens;
 
 public:
 	XMLFile();
 	XMLFile(std::string path);
 	void Load(std::string path);
-	void PrintLines();
+	void Lex();
+	void AddToken(std::string& text, TokenType type);
 };
 
 #endif

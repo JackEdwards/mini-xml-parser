@@ -9,7 +9,11 @@ enum TokenType
 	ClosingTagStart,
 	TagEnd,
 	TagName,
-	TagContent
+	TagContent,
+	AttributeName,
+	AttributeContent,
+	EqualsSign,
+	DoubleQuote,
 };
 
 class Token

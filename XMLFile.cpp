@@ -1,9 +1,6 @@
 #include "XMLFile.hpp"
 
-XMLFile::XMLFile()
-{
-
-}
+XMLFile::XMLFile() {}
 
 XMLFile::XMLFile(std::string path)
 {
@@ -31,6 +28,7 @@ void XMLFile::Load(std::string path)
 
 	file.close();
 	Lex();
+	Parse();
 }
 
 void XMLFile::Lex()
@@ -68,7 +66,7 @@ void XMLFile::Lex()
 
 			break;
 		case State::InsideTag:
-			if (m_contents[i + 1] == '>')
+			if (m_contents[i + 1] == '>' || m_contents[i + 1] == ' ')
 			{
 				AddToken(token, TokenType::TagName);
 			}
@@ -76,6 +74,39 @@ void XMLFile::Lex()
 			{
 				AddToken(token, TokenType::TagEnd);
 				state = State::OutsideTag;
+			}
+			else if (token == " ")
+			{
+				token = "";
+				state = State::InsideAttribute;
+			}
+
+			break;
+		case State::InsideAttribute:
+			if (m_contents[i + 1] == '=')
+			{
+				AddToken(token, TokenType::AttributeName);
+			}
+			if (token == "=")
+			{
+				AddToken(token, TokenType::EqualsSign);
+			}
+			else if (token == "\"")
+			{
+				AddToken(token, TokenType::DoubleQuote);
+				state = State::InsideAttributeContent;
+			}
+
+			break;
+		case State::InsideAttributeContent:
+			if (m_contents[i + 1] == '"')
+			{
+				AddToken(token, TokenType::AttributeContent);
+			}
+			if (token == "\"")
+			{
+				AddToken(token, TokenType::DoubleQuote);
+				state = State::InsideTag;
 			}
 
 			break;
@@ -87,4 +118,43 @@ void XMLFile::AddToken(std::string& text, TokenType type)
 {
 	m_tokens.push_back(Token(text, type));
 	text = "";
+}
+
+void XMLFile::Parse()
+{
+	for (Token token : m_tokens)
+	{
+		std::cout << token.m_content << " - ";
+
+		switch (token.m_type)
+		{
+		case TokenType::OpeningTagStart:
+			std::cout << "OpeningTagStart\n";
+			break;
+		case TokenType::ClosingTagStart:
+			std::cout << "ClosingTagStart\n";
+			break;
+		case TokenType::TagEnd:
+			std::cout << "TagEnd\n";
+			break;
+		case TokenType::TagName:
+			std::cout << "TagName\n";
+			break;
+		case TokenType::TagContent:
+			std::cout << "TagContent\n";
+			break;
+		case TokenType::AttributeName:
+			std::cout << "AttributeName\n";
+			break;
+		case TokenType::AttributeContent:
+			std::cout << "AttributeContent\n";
+			break;
+		case TokenType::EqualsSign:
+			std::cout << "EqualsSign\n";
+			break;
+		case TokenType::DoubleQuote:
+			std::cout << "DoubleQuote\n";
+			break;
+		}
+	}
 }

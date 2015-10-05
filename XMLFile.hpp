@@ -11,7 +11,9 @@
 enum State
 {
 	InsideTag,
-	OutsideTag
+	OutsideTag,
+	InsideAttribute,
+	InsideAttributeContent
 };
 
 class XMLFile
@@ -27,6 +29,7 @@ public:
 	void Load(std::string path);
 	void Lex();
 	void AddToken(std::string& text, TokenType type);
+	void Parse();
 };
 
 #endif

@@ -124,6 +124,8 @@ void XMLFile::Parse()
 {
 	XMLTag* parentTag = m_root;
 	XMLTag* currentTag = nullptr;
+	std::string attrName;
+	std::string attrContent;
 
 	for (Token token : m_tokens)
 	{
@@ -149,6 +151,15 @@ void XMLFile::Parse()
 			currentTag->m_value = token.m_content;
 
 			break;
+		case TokenType::AttributeName:
+			attrName = token.m_content;
+
+			break;
+		case TokenType::AttributeContent:
+			attrContent = token.m_content;
+			currentTag->m_attributes[attrName] = attrContent;
+
+			break;
 		}
 	}
 }
@@ -164,6 +175,10 @@ void XMLFile::PrintData(XMLTag* tag, int depth)
 		std::cout << tag->m_name;
 		if (tag->m_value != "")
 			std::cout << " - " << tag->m_value;
+		if (tag->m_attributes.size() > 0)
+			for (auto& kv : tag->m_attributes)
+				std::cout << " [" << kv.first << ": " << kv.second << "]";
+				
 		std::cout << '\n';
 		PrintData(tag, depth + 1);
 	}

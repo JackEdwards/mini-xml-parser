@@ -40,6 +40,9 @@ void XMLFile::Lex()
 
 	for (size_t i = 0; i < m_contents.size(); ++i)
 	{
+		if (m_contents[i] == '\n' || m_contents[i] == '\t')
+			continue;
+
 		token += m_contents[i];
 
 		switch (state)

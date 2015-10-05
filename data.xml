@@ -1,7 +1,7 @@
-<Settings game="pazuzu">
+<Settings>
 	<ScreenSize>
-		<Width type="int">800</Width>
-		<Height type="int">600</Height>
+		<Width>800</Width>
+		<Height>600</Height>
 	</ScreenSize>
-	<FullScreen type="bool">False</FullScreen>
+	<FullScreen>False</FullScreen>
 </Settings>

@@ -89,7 +89,7 @@ void XMLFile::Lex()
 			}
 			if (token == "=")
 			{
-				AddToken(token, TokenType::EqualsSign);
+				AddToken(token, TokenType::EqualSign);
 			}
 			else if (token == "\"")
 			{
@@ -122,39 +122,54 @@ void XMLFile::AddToken(std::string& text, TokenType type)
 
 void XMLFile::Parse()
 {
+	XMLTag* parentTag = m_root;
+	XMLTag* currentTag = nullptr;
+
 	for (Token token : m_tokens)
 	{
-		std::cout << token.m_content << " - ";
-
 		switch (token.m_type)
 		{
 		case TokenType::OpeningTagStart:
-			std::cout << "OpeningTagStart\n";
+			currentTag = new XMLTag();
+ 			parentTag->m_children.push_back(currentTag);
+			currentTag->mp_parent = parentTag;
+			parentTag = currentTag;
+
 			break;
 		case TokenType::ClosingTagStart:
-			std::cout << "ClosingTagStart\n";
-			break;
-		case TokenType::TagEnd:
-			std::cout << "TagEnd\n";
+			parentTag = parentTag->mp_parent;
+
 			break;
 		case TokenType::TagName:
-			std::cout << "TagName\n";
+			if (currentTag->m_name == "")
+				currentTag->m_name = token.m_content;
+
 			break;
 		case TokenType::TagContent:
-			std::cout << "TagContent\n";
-			break;
-		case TokenType::AttributeName:
-			std::cout << "AttributeName\n";
-			break;
-		case TokenType::AttributeContent:
-			std::cout << "AttributeContent\n";
-			break;
-		case TokenType::EqualsSign:
-			std::cout << "EqualsSign\n";
-			break;
-		case TokenType::DoubleQuote:
-			std::cout << "DoubleQuote\n";
+			currentTag->m_value = token.m_content;
+
 			break;
 		}
 	}
+}
+
+void XMLFile::PrintData(XMLTag* tag, int depth)
+{
+	for (XMLTag* tag : tag->m_children)
+	{
+		std::string spaces = "";
+		for (int i = 0; i < depth; ++i)
+			spaces += "    ";
+		std::cout << spaces;
+		std::cout << tag->m_name;
+		if (tag->m_value != "")
+			std::cout << " - " << tag->m_value;
+		std::cout << '\n';
+		PrintData(tag, depth + 1);
+	}
+}
+
+void XMLFile::PrintAllData()
+{
+	PrintData(m_root);
 }

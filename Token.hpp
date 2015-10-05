@@ -12,7 +12,7 @@ enum TokenType
 	TagContent,
 	AttributeName,
 	AttributeContent,
-	EqualsSign,
+	EqualSign,
 	DoubleQuote,
 };
 

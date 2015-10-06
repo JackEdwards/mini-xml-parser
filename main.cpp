@@ -5,5 +5,7 @@ int main()
 	XMLFile file("data.xml");
 	file.PrintAllData();
 
-	system("pause");
+	#ifdef _WIN32
+		system("pause");
+	#endif
 }

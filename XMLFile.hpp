@@ -21,18 +21,20 @@ class XMLFile
 public:
 	std::string m_path;
 	std::string m_contents;
-	std::vector<Token> m_tokens;
 	XMLTag* const m_root = new XMLTag();
+private:
+	std::vector<Token> m_tokens;
 
 public:
 	XMLFile();
 	XMLFile(std::string path);
 	void Load(std::string path);
+	void PrintAllData();
+private:
 	void Lex();
 	void AddToken(std::string& text, TokenType type);
 	void Parse();
 	void PrintData(XMLTag* tag, int depth = 0);
-	void PrintAllData();
 };
 
 #endif

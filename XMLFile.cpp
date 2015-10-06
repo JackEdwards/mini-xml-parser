@@ -9,6 +9,9 @@ XMLFile::XMLFile(std::string path)
 
 void XMLFile::Load(std::string path)
 {
+	if (m_contents != "")
+		return;
+
 	std::ifstream file(path);
 
 	if (file.is_open())
@@ -133,8 +136,7 @@ void XMLFile::Parse()
 		{
 		case TokenType::OpeningTagStart:
 			currentTag = new XMLTag();
- 			parentTag->m_children.push_back(currentTag);
-			currentTag->mp_parent = parentTag;
+			parentTag->AddChild(currentTag);
 			parentTag = currentTag;
 
 			break;
@@ -173,8 +175,8 @@ void XMLFile::PrintData(XMLTag* tag, int depth)
 			spaces += "    ";
 		std::cout << spaces;
 		std::cout << tag->m_name;
-		if (tag->m_value != "")
-			std::cout << " - " << tag->m_value;
+		if (tag->m_value.ToString() != "")
+			std::cout << " - " << tag->m_value.ToString();
 		if (tag->m_attributes.size() > 0)
 			for (auto& kv : tag->m_attributes)
 				std::cout << " [" << kv.first << ": " << kv.second << "]";

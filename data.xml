@@ -3,5 +3,5 @@
 		<Width type="int">800</Width>
 		<Height type="int">600</Height>
 	</ScreenSize>
-	<FullScreen type="bool" test="testing">False</FullScreen>
+	<FullScreen type="bool">False</FullScreen>
 </Settings>

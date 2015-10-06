@@ -7,24 +7,25 @@ XMLTag::XMLTag(std::string name)
 	m_name = name;
 }
 
-void XMLTag::AddChild()
+void XMLTag::AddChild(XMLTag* tag)
 {
-	XMLTag* child = new XMLTag();
-	child->mp_parent = this;
-	m_children.push_back(child);
+	tag->mp_parent = this;
+	m_children.push_back(tag);
 }
 
-void XMLTag::AddChild(std::string name)
+XMLTag* XMLTag::GetFirstChild()
 {
-	XMLTag* child = new XMLTag(name);
-	child->mp_parent = this;
-	m_children.push_back(child);
+	if (m_children.size() > 0)
+		return m_children[0];
+	
+	return nullptr;
 }
 
-void XMLTag::AddChild(std::string name, std::string data)
+XMLTag* XMLTag::GetChildWithName(std::string query)
 {
-	XMLTag* child = new XMLTag(name);
-	child->m_value = data;
-	child->mp_parent = this;
-	m_children.push_back(child);
+	for (XMLTag* tag : m_children)
+		if (tag->m_name == query)
+			return tag;
+
+	return nullptr;
 }

@@ -1,7 +1,3 @@
 <Settings>
-	<ScreenSize>
-		<Width type="int">800</Width>
-		<Height type="int">600</Height>
-	</ScreenSize>
-	<FullScreen type="bool">False</FullScreen>
+	<FullScreen>1.52</FullScreen>
 </Settings>

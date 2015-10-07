@@ -179,7 +179,7 @@ void XMLFile::PrintData(XMLTag* tag, int depth)
 			std::cout << " - " << tag->m_value.ToString();
 		if (tag->m_attributes.size() > 0)
 			for (auto& kv : tag->m_attributes)
-				std::cout << " [" << kv.first << ": " << kv.second << "]";
+				std::cout << " [" << kv.first << ": " << kv.second.ToString() << "]";
 				
 		std::cout << '\n';
 		PrintData(tag, depth + 1);

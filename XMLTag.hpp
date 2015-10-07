@@ -10,9 +10,8 @@ class XMLTag
 {
 public:
 	std::string m_name;
-	//std::string m_value;
 	XMLValue m_value;
-	std::unordered_map<std::string, std::string> m_attributes;
+	std::unordered_map<std::string, XMLValue> m_attributes;
 	XMLTag* mp_parent;
 	std::vector<XMLTag*> m_children;
 

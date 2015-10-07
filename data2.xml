@@ -1,3 +1,10 @@
-<Settings>
-	<FullScreen>1.52</FullScreen>
-</Settings>
+<Map>
+	<Tile x="0" y="0" width="32" height="32"></Tile>
+	<Tile x="1" y="0" width="32" height="32"></Tile>
+	<Tile x="2" y="0" width="32" height="32"></Tile>
+	<Tile x="3" y="0" width="32" height="32"></Tile>
+	<Tile x="0" y="1" width="32" height="32"></Tile>
+	<Tile x="1" y="1" width="32" height="32"></Tile>
+	<Tile x="2" y="1" width="32" height="32"></Tile>
+	<Tile x="3" y="1" width="32" height="32"></Tile>
+</Map>

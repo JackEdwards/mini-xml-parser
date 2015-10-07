@@ -21,7 +21,7 @@ public:
 	~XMLTag();
 	void AddChild(XMLTag* tag);
 	XMLTag* GetFirstChild();
-	XMLTag* GetChildWithName(std::string query);
+	XMLTag* GetChild(std::string name);
 };
 
 #endif

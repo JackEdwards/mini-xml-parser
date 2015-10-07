@@ -27,10 +27,10 @@ XMLTag* XMLTag::GetFirstChild()
 	return nullptr;
 }
 
-XMLTag* XMLTag::GetChildWithName(std::string query)
+XMLTag* XMLTag::GetChild(std::string name)
 {
 	for (XMLTag* tag : m_children)
-		if (tag->m_name == query)
+		if (tag->m_name == name)
 			return tag;
 
 	return nullptr;

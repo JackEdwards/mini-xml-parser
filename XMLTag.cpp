@@ -7,6 +7,12 @@ XMLTag::XMLTag(std::string name)
 	m_name = name;
 }
 
+XMLTag::~XMLTag()
+{
+	for (int i = 0; i < m_children.size(); ++i)
+		delete m_children[i];
+}
+
 void XMLTag::AddChild(XMLTag* tag)
 {
 	tag->mp_parent = this;

@@ -7,6 +7,11 @@ XMLFile::XMLFile(std::string path)
 	Load(path);
 }
 
+XMLFile::~XMLFile()
+{
+	delete m_root;
+}
+
 void XMLFile::Load(std::string path)
 {
 	if (m_contents != "")

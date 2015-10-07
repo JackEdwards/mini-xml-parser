@@ -18,6 +18,7 @@ public:
 public:
 	XMLTag();
 	XMLTag(std::string name);
+	~XMLTag();
 	void AddChild(XMLTag* tag);
 	XMLTag* GetFirstChild();
 	XMLTag* GetChildWithName(std::string query);

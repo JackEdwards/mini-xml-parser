@@ -28,6 +28,7 @@ private:
 public:
 	XMLFile();
 	XMLFile(std::string path);
+	~XMLFile();
 	void Load(std::string path);
 	void PrintAllData();
 private:

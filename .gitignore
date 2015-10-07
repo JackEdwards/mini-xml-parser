@@ -1,4 +1,4 @@
-output
+xmlparser
 *.obj
 *.obj.enc
 *.idb
@@ -9,3 +9,4 @@ output
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+*.o

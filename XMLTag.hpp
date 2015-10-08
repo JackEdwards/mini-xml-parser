@@ -21,7 +21,8 @@ public:
 	~XMLTag();
 	void AddChild(XMLTag* tag);
 	XMLTag* GetFirstChild();
-	XMLTag* GetChild(std::string name);
+	XMLTag* GetFirstChild(std::string name);
+	std::vector<XMLTag*> GetChildren(std::string name);
 };
 
 #endif

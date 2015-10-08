@@ -2,12 +2,12 @@
 
 int main()
 {
-	XMLFile file("data.xml");
-	XMLTag* tag = file.m_root->GetChild("Settings")->GetChild("ScreenSize");
+	XMLFile file("data2.xml");
+	XMLTag* tag = file.m_root->GetFirstChild("Map");
+	std::vector<XMLTag*> tags = tag->GetChildren("Tile");
 
-	std::cout << "Width: " << tag->GetChild("Width")->m_value.ToInt();
-	std::cout << " Height: " << tag->GetChild("Height")->m_value.ToInt();
-	std::cout << std::endl;
+	for (XMLTag* tag : tags)
+		std::cout << "X: " << tag->m_attributes["x"].ToInt() << " Y: " << tag->m_attributes["y"].ToInt() << '\n';
 
 	#ifdef _WIN32
 		system("pause");

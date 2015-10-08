@@ -27,11 +27,22 @@ XMLTag* XMLTag::GetFirstChild()
 	return nullptr;
 }
 
-XMLTag* XMLTag::GetChild(std::string name)
+XMLTag* XMLTag::GetFirstChild(std::string name)
 {
 	for (XMLTag* tag : m_children)
-		if (tag->m_name == name)
-			return tag;
+	if (tag->m_name == name)
+		return tag;
 
 	return nullptr;
+}
+
+std::vector<XMLTag*> XMLTag::GetChildren(std::string name)
+{
+	std::vector<XMLTag*> tags;
+
+	for (XMLTag* tag : m_children)
+		if (tag->m_name == name)
+			tags.push_back(tag);
+
+	return tags;
 }

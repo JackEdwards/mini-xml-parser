@@ -5,7 +5,7 @@ default: xmlparser
 
 xmlparser:  main.o Token.o XMLFile.o XMLTag.o XMLValue.o
 	$(COMPILER) $(FLAGS) -o xmlparser main.o Token.o XMLFile.o XMLTag.o XMLValue.o
-	$(RM) *.o *~
+	$(RM) *.o *~i
 
 Token.o:  Token.cpp Token.hpp
 	$(COMPILER) $(FLAGS) -c Token.cpp

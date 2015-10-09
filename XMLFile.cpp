@@ -167,6 +167,12 @@ void XMLFile::Parse()
 			currentTag->m_attributes[attrName] = attrContent;
 
 			break;
+		case TokenType::TagEnd:
+			break;
+		case TokenType::EqualSign:
+			break;
+		case TokenType::DoubleQuote:
+			break;
 		}
 	}
 }

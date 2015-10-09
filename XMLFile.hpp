@@ -21,7 +21,7 @@ class XMLFile
 public:
 	std::string m_path;
 	std::string m_contents;
-	XMLTag* const m_root = new XMLTag();
+	XMLTag* m_root;
 private:
 	std::vector<Token> m_tokens;
 

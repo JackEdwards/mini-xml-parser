@@ -39,4 +39,6 @@ bool XMLValue::ToBool()
 		return true;
 	else if (value == "false")
 		return false;
+
+	return false;
 }

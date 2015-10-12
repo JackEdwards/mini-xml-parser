@@ -35,6 +35,8 @@ bool XMLValue::ToBool()
 	std::string value = m_value;
 	std::transform(value.begin(), value.end(), value.begin(), ::tolower);
 
+	assert(value == "true" || value == "false" && "XML boolean should be either 'true' or 'false'.\n");
+
 	if (value == "true")
 		return true;
 	else if (value == "false")
